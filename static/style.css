@@ -1,0 +1,250 @@
+:root {
+  --primary-color: #6200ee;
+  --primary-variant: #3700b3;
+  --secondary-color: #03dac6;
+  --background-color: #ffffff;
+  --surface-color: #ffffff;
+  --error-color: #b00020;
+  --text-primary: rgba(0, 0, 0, 0.87);
+  --text-secondary: rgba(0, 0, 0, 0.60);
+  --elevation-1: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  --elevation-2: 0 3px 6px rgba(0,0,0,0.15), 0 2px 4px rgba(0,0,0,0.12);
+  --ripple-color: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] {
+  --primary-color: #bb86fc;
+  --primary-variant: #3700b3;
+  --secondary-color: #03dac6;
+  --background-color: #121212;
+  --surface-color: #121212;
+  --error-color: #cf6679;
+  --text-primary: rgba(255, 255, 255, 0.87);
+  --text-secondary: rgba(255, 255, 255, 0.60);
+  --ripple-color: rgba(255, 255, 255, 0.1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Roboto, sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-primary);
+  transition: background-color 0.3s, color 0.3s;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  flex: 1;
+  padding: 16px;
+  padding-bottom: 80px;
+}
+
+/* Bottom Navigation */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 56px;
+  background-color: var(--surface-color);
+  display: flex;
+  justify-content: space-around;
+  box-shadow: var(--elevation-2);
+  z-index: 1000;
+}
+
+.nav-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.2s;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-item.active {
+  color: var(--primary-color);
+}
+
+.nav-item svg {
+  width: 24px;
+  height: 24px;
+  margin-bottom: 4px;
+}
+
+.nav-item span {
+  font-size: 12px;
+}
+
+/* Screens */
+.screen {
+  display: none;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.screen.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Remote Control */
+.remote-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding: 24px;
+}
+
+.middle-row {
+  display: flex;
+  gap: 24px;
+}
+
+.remote-button {
+  width: 56px;
+  height: 56px;
+  border-radius: 28px;
+  border: none;
+  background-color: var(--surface-color);
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--elevation-1);
+  transition: box-shadow 0.2s;
+  position: relative;
+  overflow: hidden;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.remote-button:active {
+  box-shadow: var(--elevation-2);
+}
+
+/* Control Buttons */
+.control-buttons {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.control-buttons .remote-button {
+  min-width: 72px;
+  border-radius: 16px;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  background-color: var(--primary-color);
+  color: white;
+}
+
+/* Settings Screen */
+.settings-card {
+  background-color: var(--surface-color);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: var(--elevation-1);
+}
+
+.settings-card h2 {
+  font-size: 20px;
+  margin-bottom: 16px;
+  color: var(--text-primary);
+}
+
+.input-group {
+  margin-bottom: 16px;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.input-group input {
+  width: 100%;
+  height: 48px;
+  padding: 0 16px;
+  border-radius: 4px;
+  border: 1px solid var(--text-secondary);
+  background-color: var(--surface-color);
+  color: var(--text-primary);
+  font-size: 16px;
+}
+
+.theme-toggle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+}
+
+/* Switch Toggle */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 52px;
+  height: 32px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.38);
+  transition: .4s;
+  border-radius: 16px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 24px;
+  width: 24px;
+  left: 4px;
+  bottom: 4px;
+  background-color: var(--surface-color);
+  transition: .4s;
+  border-radius: 50%;
+  box-shadow: var(--elevation-1);
+}
+
+input:checked + .slider {
+  background-color: var(--primary-color);
+}
+
+input:checked + .slider:before {
+  transform: translateX(20px);
+}
